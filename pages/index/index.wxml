@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<view class="container">
+   <swiper indicator-dots autoplay circular interval="5000" duration="150" class="swiper" >
+      <swiper-item catchtap="bindViewTap" >
+        <image src="../../static/images/ban.jpg" class="slide-image" mode="widthFix"/>
+      </swiper-item>
+      <swiper-item catchtap="bindViewTap">
+        <image src="../../static/images/ban.jpg" class="slide-image" mode="widthFix"/>
+      </swiper-item>
+    </swiper>
+    <view class="index-search" bindtap="bindViewTap" >
+      <image src="../../static/images/search.png" class="search-image"/>
+      <view class="search-suxian"></view>
+      <view class="search-input">搜索目的地/关键字/民宿</view>
+    </view>
+    <scroll-view scroll-left="0" enhanced="true" show-scrollbar="true" scroll-x="true" class="index-category">
+      <view style="padding:0 20rpx">
+        <view class="index-category-img" bindtap="bindViewTap" id="0012978"><image src="../../static/images/1.png"/></view>
+        <view class="index-category-img" id="0011483"><image src="../../static/images/2.png"/></view>
+        <view class="index-category-img" id="0011487"><image src="../../static/images/3.png"/></view>
+        <view class="index-category-img" id="0011485"><image src="../../static/images/4.png"/></view>
+        <view class="index-category-img" id="0011488"><image src="../../static/images/5.png"/></view>
+        <view class="index-category-img" id="0011484"><image src="../../static/images/6.png"/></view>
+        <view class="index-category-img" id="0011486"><image src="../../static/images/7.png"/></view>
+        <view class="index-category-img" id="0011489"><image src="../../static/images/8.png"/></view>
+      </view>
+    </scroll-view>
+    <view class="index-ts">
+      <view class="ts-title">特色民宿</view>
+      <view class="ts-cont">
+        <view class="ts-list mr-30">
+          <view class="ts-image"><image src="../../static/images/list.jpg"/></view>
+          <view class="ts-name">
+            <view class="name">如汐·隐如汐·隐如汐·隐如汐·隐</view>
+            <view class="tips">西湖旅宿西湖旅宿西湖旅宿西湖旅宿西湖旅宿西湖旅宿西湖旅宿</view>
+            <view class="more">详情</view>
+          </view>
+        </view>
+        <view class="ts-list">
+          <view class="ts-image"><image src="../../static/images/list.jpg"/></view>
+          <view class="ts-name">
+            <view class="name">如汐·隐</view>
+            <view class="tips">西湖旅宿</view>
+            <view class="more">详情</view>
+          </view>
+        </view>
+      </view>
+      <view class="ts-more">查看更多民宿 >></view>
+    </view>
+    <view class="foot">
+      <view class="foot-name">杭州民宿</view>
+      <view class="foot-copyr">Copyright © 2020 杭州民宿 All Right Reserved.</view>
+    </view>
+</view>

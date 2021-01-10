@@ -1,0 +1,145 @@
+/**index.wxss**/
+.container{
+  background: #fff;
+}
+.swiper{
+  height: 410rpx
+}
+.slide-image {
+  width:100%;
+  height:100%;
+}
+.swiper .wx-swiper-dot{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background:#fff;
+}
+.swiper .wx-swiper-dot-active{
+  background:#eec800;
+}
+.wx-swiper-dots.wx-swiper-dots-horizontal{
+margin-bottom: 50rpx;
+}
+.index-search{
+  position: relative;
+  top:-50rpx;
+  height:100rpx;
+  padding:0 40rpx;
+}
+.search-image{
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute; 
+  top:30rpx;
+  left:80rpx
+}
+.search-suxian{
+  width: 2rpx;
+  background:#ccc;
+  height: 60rpx;
+  top: 20rpx;
+  position: absolute;
+  left:150rpx;
+}
+.search-input{
+  background:#fbfafa;
+  border-radius: 60rpx;
+  line-height:100rpx;
+  height:100rpx;
+  padding-left:140rpx;
+  box-shadow: 0rpx 8rpx 8rpx #ccc;
+  color:#b1b1b1;
+}
+.index-category{
+  width: 100%;
+  height: 220rpx;
+  white-space: nowrap;
+}
+.index-category-img{
+  width: 130rpx;
+  height: 179rpx;
+  padding:0 25rpx;
+  display: inline-block;
+}
+.index-category-img image{
+  width:100%;
+  height: 100%;
+}
+.index-ts{
+  background:#f2f2f2;
+  padding:40rpx;
+}
+.ts-title{
+  height: 70rpx;
+} 
+.ts-cont{
+  display: flex;
+}
+.ts-list{
+  width:320rpx;
+  background:#fff;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+.mr-30{
+  margin-right: 30rpx;
+}
+.ts-list image{
+  width: 100%;
+  height: 250rpx;
+}
+.ts-name{
+  padding:0 20rpx 15rpx 20rpx;
+  position: relative;
+}
+.name{
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tips{
+  color:#999;
+  font-size:24rpx;
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.more{
+  position: absolute;
+  background: #eec800;
+  top:40rpx;
+  color:#fff;
+  border-radius: 5rpx;
+  padding:2rpx 12rpx;
+  font-size:22rpx;
+  right:20rpx
+}
+
+.ts-more{
+  background: #eec800;
+  color:#fff;
+  width: 300rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  margin:40rpx auto 0 auto;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.foot{
+  background:#f2f2f2;
+  text-align: center;
+  padding:40rpx 0;
+  margin-top:20rpx
+}
+.foot .foot-name{
+  color:#596c95;font-size:30rpx;
+}
+.foot .foot-copyr{
+  color:#999;
+  font-size:24rpx;
+}

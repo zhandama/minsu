@@ -1,0 +1,144 @@
+<view class="container">
+  <!--header-->
+  <view class="tui-header-box">
+    <view class="tui-header" style="width:{{width}}px;height:{{height}}px">
+      <tui-icon name="arrowleft" color="#000" tui-icon-class="tui-back" style="margin-top:{{arrowTop}}px" bindtap="back"></tui-icon>
+      <view class="tui-searchbox" style="margin-top:{{inputTop}}px" bindtap="search">
+        <icon type="search" size='13' color='#999'></icon>
+        <text class="tui-search-text" wx:if="{{!searchKey}}">搜索Thorui商品</text>
+        <view class="tui-search-key" wx:if="{{searchKey}}">
+          <view class="tui-key-text">{{searchKey}}</view>
+          <tui-icon name="shut" size='12' color='#fff'></tui-icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--header-->
+  <!--screen-->
+  <view class="tui-header-screen" style="top:{{height}}px">
+    <view class="tui-screen-top">
+      <view class="tui-top-item {{tabIndex==0?'tui-active tui-bold':''}}" data-index="0" bindtap="screen">
+        <view>综合</view>
+        <tui-icon name="{{selectH>0?'arrowup':'arrowdown'}}" size="14" color="{{tabIndex==0?'#e41f19':'#444'}}" tui-icon-class="tui-ml"></tui-icon>
+      </view>
+      <view class="tui-top-item {{tabIndex==1?'tui-active tui-bold':''}}" bindtap="screen" data-index="1">销量</view>
+      <view class="tui-top-item" bindtap="screen" data-index="2">
+        <tui-icon name="{{isList?'manage':'listview'}}" size="{{isList?22:18}}" bold="{{isList?false:true}}" color="#333"></tui-icon>
+      </view>
+      <view class="tui-top-item" bindtap="screen" data-index="3">
+        <text>筛选</text>
+        <tui-icon name="screen" size="12" color="#333" tui-icon-class="tui-ml" bold="{{true}}"></tui-icon>
+      </view>
+    </view>
+  </view>
+  <!--screen-->
+
+  <!--list-->
+  <view class="tui-product-list" style="margin-top:{{dropScreenH+18}}rpx">
+    <view class="tui-product-container">
+      <block wx:for="{{productList}}" wx:key="{{index}}" wx:if="{{(index+1)%2!=0 || isList}}">
+        <template is="productItem" data="{{item,index:index,isList:isList}}" />
+      </block>
+    </view>
+    <view class="tui-product-container" wx:if="{{!isList}}">
+      <block wx:for="{{productList}}" wx:key="{{index}}" wx:if="{{(index+1)%2==0}}">
+        <template is="productItem" data="{{item,index:index}}" />
+      </block>
+    </view>
+  </view>
+
+  <!--list-->
+
+  <!--左抽屉弹层 筛选 -->
+  <tui-drawer mode="right" visible="{{drawer}}" bind:close="closeDrawer">
+    <view class="tui-drawer-box" style="padding-top:{{height}}px">
+      <scroll-view class="tui-drawer-scroll" scroll-y style="height:{{drawerH}}px">
+        <view class="tui-drawer-title">
+          <text class="tui-title-bold">全部分类</text>
+          <view class="tui-all-box">
+            <view class="tui-attr-right">全部</view>
+            <tui-icon name="arrowdown" size="14" color="#444" tui-icon-class="tui-ml"></tui-icon>
+          </view>
+        </view>
+        <view class="tui-drawer-content tui-flex-attr">
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">男装</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">女装</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">运动服饰</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">户外鞋服</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">文化</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">服饰配件</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">流行男鞋</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">艺术</view>
+          </view>
+        </view>
+
+        <view class="tui-drawer-title">
+          <text class="tui-title-bold">品牌</text>
+          <view class="tui-all-box">
+            <view class="tui-attr-right tui-active ">花花公子，七匹狼（SEPTWOLVES）</view>
+            <tui-icon name="arrowdown" size="14" color="#444" tui-icon-class="tui-ml"></tui-icon>
+          </view>
+        </view>
+        <view class="tui-drawer-content tui-flex-attr">
+          <view class="tui-attr-item tui-btmItem-active">
+            <view class="tui-attr-ellipsis">花花公子</view>
+          </view>
+          <view class="tui-attr-item tui-btmItem-active">
+            <view class="tui-attr-ellipsis">七匹狼（SEPTWOLVES）</view>
+          </view>
+          <view class="tui-attr-item">
+            <view class="tui-attr-ellipsis">吉普</view>
+          </view>
+        </view>
+
+        <view class="tui-safearea-bottom"></view>
+      </scroll-view>
+      <view class="tui-attr-btnbox">
+        <view class="tui-attr-safearea">
+          <view class="tui-drawer-btn tui-drawerbtn-black" hover-class="tui-white-hover" hover-stay-time="150">重置</view>
+          <view class="tui-drawer-btn tui-drawerbtn-primary" hover-class="tui-red-hover" hover-stay-time="150" bindtap="closeDrawer">确定</view>
+        </view>
+      </view>
+    </view>
+  </tui-drawer>
+  <!--左抽屉弹层 筛选-->
+
+  <!--模板-->
+  <template name="productItem">
+    <!--商品列表-->
+    <view class="tui-pro-item {{isList?'tui-flex-list':''}}" hover-class="hover" hover-start-time="150" bindtap="detail">
+      <image src="../../static/images/mall/product/{{item.img}}.jpg" class="tui-pro-img {{isList?'tui-proimg-list':''}}" mode="widthFix" />
+      <view class="tui-pro-content">
+        <view class="tui-pro-tit">{{item.name}}</view>
+        <view>
+          <view class="tui-pro-price">
+            <text class="tui-sale-price">￥{{item.sale}}</text>
+            <text class="tui-factory-price">￥{{item.factory}}</text>
+          </view>
+          <view class="tui-pro-pay">{{item.payNum}}人付款</view>
+        </view>
+      </view>
+    </view>
+    <!--商品列表-->
+  </template>
+
+  <!--加载loadding-->
+  <tui-loadmore visible="{{loadding}}" index="3" type="red"></tui-loadmore>
+  <tui-nomore visible="{{!pullUpOn && isList}}" bgcolor="#f7f7f7"></tui-nomore>
+  <!--加载loadding-->
+</view>
