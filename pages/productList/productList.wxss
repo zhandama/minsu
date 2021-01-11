@@ -439,4 +439,8 @@ page {
   color: #656565;
 }
 
-/* 商品列表*/
+.search-image{
+  width: 30rpx;
+  height: 30rpx;
+  padding-left:5px
+}

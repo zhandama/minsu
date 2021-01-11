@@ -3,7 +3,8 @@
   <view class="tui-header-box">
     <view class="tui-header" style="height:40px">
       <view class="tui-searchbox" style="margin:10px 20px 0 20px" bindtap="search">
-        <icon type="search" size='13' color='#999'></icon>
+        <!-- <icon type="search" size='13' color='#999'></icon> -->
+        <image src="../../static/images/search.png" class="search-image"></image>
         <input class="tui-search-text" wx:if="{{!searchKey}}" placeholder="搜索目的地/关键字/民宿"></input>
         <view class="tui-search-key" wx:if="{{searchKey}}">
           <view class="tui-key-text">{{searchKey}}</view>
