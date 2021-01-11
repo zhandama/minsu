@@ -45,7 +45,7 @@
           </view>
         </view>
       </view>
-      <view class="ts-more">查看更多民宿 >></view>
+      <view class="ts-more" bindtap="bindViewTap">查看更多民宿 >></view>
     </view>
     <view class="foot">
       <view class="foot-name">杭州民宿</view>

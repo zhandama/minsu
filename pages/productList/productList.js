@@ -18,73 +18,73 @@ Page({
     selectH: 0,
     productList: [{
         img: 1,
-        name: "欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜 30ml（欧莱雅彩妆 BB霜 粉BB 遮瑕疵 隔离）",
+        name: "源居六然·西湖",
         sale: 599,
         factory: 899,
-        payNum: 2342
+        address: "西湖旅宿"
       },
       {
         img: 2,
-        name: "德国DMK进口牛奶  欧德堡（Oldenburger）超高温处理全脂纯牛奶1L*12盒",
+        name: "杭州东梓关守一茶舍民宿",
         sale: 29,
         factory: 69,
-        payNum: 999
+        address: "场口镇东梓关村东梓新居A-57"
       },
       {
         img: 3,
-        name: "【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红",
+        name: "临安南山有约民宿",
         sale: 299,
         factory: 699,
-        payNum: 666
+        address: "西湖旅宿"
       },
       {
         img: 4,
-        name: "百雀羚套装女补水保湿护肤品",
+        name: "杭州云月山间",
         sale: 1599,
         factory: 2899,
-        payNum: 236
+        address: "场口镇东梓关村东梓新居A-57"
       },
       {
         img: 5,
-        name: "百草味 肉干肉脯 休闲零食 靖江精制猪肉脯200g/袋",
+        name: "杭州西湖桂墅民宿",
         sale: 599,
         factory: 899,
-        payNum: 2399
+        address: "天目山镇告岭村东关一组关口9号"
       },
       {
         img: 6,
-        name: "短袖睡衣女夏季薄款休闲家居服短裤套装女可爱韩版清新学生两件套 短袖粉色长颈鹿 M码75-95斤",
+        name: "杭州东梓关守一茶舍民宿",
         sale: 599,
         factory: 899,
-        payNum: 2399
+        address: "天目山镇告岭村东关一组关口9号"
       },
       {
         img: 1,
         name: "欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜",
         sale: 599,
         factory: 899,
-        payNum: 2342
+        address: "青芝坞137-138号"
       },
       {
         img: 2,
         name: "德国DMK进口牛奶",
         sale: 29,
         factory: 69,
-        payNum: 999
+        address: "河桥镇曹家村58号"
       },
       {
         img: 3,
         name: "【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红",
         sale: 299,
         factory: 699,
-        payNum: 666
+        address: "天目山镇告岭村东关一组关口9号"
       },
       {
         img: 4,
         name: "百雀羚套装女补水保湿护肤品",
         sale: 1599,
         factory: 2899,
-        payNum: 236
+        address: "青芝坞137-138号"
       }
     ],
     pageIndex: 1,
@@ -149,7 +149,9 @@ Page({
   screen: function(e) {
     let index = e.currentTarget.dataset.index;
     if (index == 0) {
-      this.showDropdownList();
+      this.setData({
+        tabIndex: 0
+      })
     } else if (index == 1) {
       this.setData({
         tabIndex: 1

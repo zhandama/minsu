@@ -157,7 +157,7 @@ page {
 }
 
 .tui-active {
-  color: #e41f19;
+  color: #fa9a46;
 }
 
 .tui-ml {
@@ -358,6 +358,7 @@ page {
   flex-direction: row;
   flex-wrap: wrap;
   box-sizing: border-box;
+  margin:20px
 }
 
 .tui-product-container {
@@ -371,7 +372,7 @@ page {
 
 .tui-pro-item {
   width: 100%;
-  margin-bottom: 10rpx;
+  margin-bottom: 40rpx;
   background: #fff;
   box-sizing: border-box;
   border-radius: 12rpx;
