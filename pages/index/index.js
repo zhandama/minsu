@@ -21,5 +21,8 @@ Page({
     util.request("/cdr", {"page":"10","limit":"10"}, "POST", false, true).then((res) => {
 
     })
+    util.request("/gethotel", {"page":"0","limit":"10"}, "POST", false, true).then((res) => {
+
+    })
   }
 })

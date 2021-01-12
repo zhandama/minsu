@@ -35,8 +35,8 @@
   <!--list-->
   <view class="tui-product-list" style="margin-top:100px">
     <view class="tui-product-container">
-      <block wx:for="{{productList}}" wx:key="{{index}}" >
-        <template is="productItem" data="{{item,index:index,isList:isList}}" />
+      <block wx:for="{{productList}}" wx:key="index" >
+        <template is="productItem" data="{{item,isList:isList}}" />
       </block>
     </view>
   </view>
@@ -122,10 +122,11 @@
   <template name="productItem">
     <!--商品列表-->
     <view class="tui-pro-item {{isList?'tui-flex-list':''}}" hover-class="hover" hover-start-time="150" bindtap="detail">
-      <image src="../../static/images/pro.png" class="tui-pro-img {{isList?'tui-proimg-list':''}}" mode="widthFix" />
+      <view class="tui-pro-imgcont"><image src="{{item.Url_path}}" class="tui-pro-img {{isList?'tui-proimg-list':''}}"  /></view>
       <view class="tui-pro-content">
-        <view class="tui-pro-tit">{{item.name}}</view>
-        <view class="tui-pro-pay">{{item.address}}</view>
+        <view class="tui-pro-tit">{{item.Name}}</view>
+        <view class="tui-pro-pay">{{item.Address}}</view>
+        <view class="tui-pro-more">查看详情 ></view>
       </view>
     </view>
     <!--商品列表-->

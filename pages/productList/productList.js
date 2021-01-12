@@ -110,6 +110,19 @@ Page({
         }
       })
     });
+    this.getList({pageIndex:1})
+  },
+  getList(){
+    util.request("/gethotel", {"page":"0","limit":"10"}, "POST", false, true).then((res) => {
+      if (res && res.code === 200) {
+        this.setData({
+          productList: res.data,
+          pageIndex: 1,
+          pullUpOn: true,
+          loadding: false
+        })
+      }
+    })
   },
   onPullDownRefresh: function() {
     let loadData = JSON.parse(JSON.stringify(this.data.productList));
@@ -124,27 +137,28 @@ Page({
   },
   onReachBottom: function() {
     if (!this.data.pullUpOn) return;
-    this.setData({
-      loadding: true
-    }, () => {
-      if (this.data.pageIndex == 4) {
-        this.setData({
-          loadding: false,
-          pullUpOn: false
-        })
-      } else {
-        let loadData = JSON.parse(JSON.stringify(this.data.productList));
-        loadData = loadData.splice(0, 10)
-        if (this.data.pageIndex == 1) {
-          loadData = loadData.reverse();
-        }
-        this.setData({
-          productList: this.data.productList.concat(loadData),
-          pageIndex: this.data.pageIndex + 1,
-          loadding: false
-        })
-      }
-    })
+    this.getList({pageIndex:this.pageIndex})
+    // this.setData({
+    //   loadding: true
+    // }, () => {
+    //   if (this.data.pageIndex == 4) {
+    //     this.setData({
+    //       loadding: false,
+    //       pullUpOn: false
+    //     })
+    //   } else {
+    //     let loadData = JSON.parse(JSON.stringify(this.data.productList));
+    //     loadData = loadData.splice(0, 10)
+    //     if (this.data.pageIndex == 1) {
+    //       loadData = loadData.reverse();
+    //     }
+    //     this.setData({
+    //       productList: this.data.productList.concat(loadData),
+    //       pageIndex: this.data.pageIndex + 1,
+    //       loadding: false
+    //     })
+    //   }
+    // })
   },
   screen: function(e) {
     let index = e.currentTarget.dataset.index;

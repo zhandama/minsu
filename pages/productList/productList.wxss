@@ -378,18 +378,32 @@ page {
   border-radius: 12rpx;
   overflow: hidden;
   transition: all 0.15s ease-in-out;
+  position: relative;
 }
 
 .tui-flex-list {
   display: flex;
   margin-bottom: 1rpx !important;
 }
-
+.tui-pro-imgcont{
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
 .tui-pro-img {
   width: 100%;
-  display: block;
+  /* height: 200px; */
 }
-
+.tui-pro-more{
+  position: absolute;
+  background: #eec800;
+  bottom:20rpx;
+  color:#fff;
+  border-radius: 5rpx;
+  padding:4rpx 12rpx;
+  font-size:22rpx;
+  right:20rpx
+}
 .tui-proimg-list {
   width: 260rpx;
   height: 260rpx;
