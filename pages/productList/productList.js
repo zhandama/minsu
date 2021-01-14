@@ -113,7 +113,7 @@ Page({
     this.getList({pageIndex:1})
   },
   getList(){
-    util.request("/gethotel", {"page":"0","limit":"10"}, "POST", false, true).then((res) => {
+    util.request("/gethotel", {"page":"1","limit":"20","type":"1","num":"3"}, "POST", false, true).then((res) => {
       if (res && res.code === 200) {
         this.setData({
           productList: res.data,
