@@ -30,7 +30,7 @@ const utils = {
   interfaceUrl: function() {
     //接口地址
     // return "https://www.thorui.cn";
-    return "http://www.hzminsu.cn:8091";
+    return "http://101.37.202.197:8091";
   },
   toast: function(text, duration, success) {
     wx.showToast({
@@ -56,7 +56,7 @@ const utils = {
     //接口请求
     if (!hideLoading) {
       wx.showLoading({
-        title: '请稍候...',
+        title: '加载中...',
         mask: true
       })
     }

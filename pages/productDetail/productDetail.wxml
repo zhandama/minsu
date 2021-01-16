@@ -12,10 +12,10 @@
 
   <!--banner-->
   <view class="tui-banner-swiper">
-    <swiper autoplay="true" interval="5000" duration="150" circular="{{true}}" style="height:{{scrollH}}px" bindchange="bannerChange">
+    <swiper autoplay="true" interval="5000" class="tui-banner-cont" duration="150" circular="{{true}}" style="height:{{imgheights[bannerIndex]}}rpx;" bindchange="bannerChange">
       <block wx:for="{{banner}}" wx:key="index">
         <swiper-item data-index="{{index}}" catchtap="previewImage">
-          <image src="{{item}}" class="tui-slide-image" style="height:{{scrollH}}px" />
+          <image src="{{item}}" data-index="{{index}}" bindload="imageLoad" class="tui-slide-image" />
         </swiper-item>
       </block>
     </swiper>
@@ -27,8 +27,8 @@
   <view class="tui-pro-detail">
     <view class="tui-product-title tui-border-radius">
       <view class="tui-pro-titbox">
-        <view class="tui-pro-title">谈判官明星同款耳坠韩国气质简约显脸瘦的耳环女百搭个性长款耳钉 个性水滴耳环【A2】</view>
-        <button open-type="share" class="tui-share-btn tui-share-position" style="width: auto;">
+        <view class="tui-pro-title">{{detail.Name}}</view>
+        <button open-type="share" data-id="{{id}}" data-img="{{banner[0]}}" data-name="{{detail.Name}}" class="tui-share-btn tui-share-position" style="width: auto;">
           <tui-tag type="gray" tui-tag-class="tui-tag-share tui-size" shape="circleLeft" size="small">
             <tui-icon name="partake" color="#999" size="15"></tui-icon>
             <text class="tui-share-text tui-gray">分享</text>
@@ -36,84 +36,45 @@
         </button>
       </view>
       <view class="tui-padding">
-        <view class="tui-sub-title tui-size tui-gray">此商品将于2019-06-28,10点结束闪购特卖，时尚美饰联合专场</view>
-        <view class="tui-sale-info tui-size tui-gray">
-          <view>快递：0.00</view>
-          <view>月销2000</view>
-          <view>浙江杭州</view>
-        </view>
-      </view>
-    </view>
-
-    <view class="tui-basic-info tui-mtop tui-radius-all">
-      <view class="tui-list-cell" bindtap="showPopup" >
-        <view class="tui-bold tui-cell-title">已选</view>
-        <view class="tui-selected-box">个性水滴耳环【A2】,1个，可选服务</view>
-        <tui-icon name="more-fill" size="20" class="tui-right" color="#666"></tui-icon>
-      </view>
-      <view class="tui-list-cell" bindtap="showPopup">
-        <view class="tui-bold tui-cell-title">送至</view>
-        <view class="tui-addr-box">
-          <view class="tui-addr-item">北京朝阳区三环到四环之间</view>
-          <view class="tui-addr-item">今日23:59前完成下单，预计6月28日23:30前发货，7月1日24:00前送达</view>
-        </view>
-        <tui-icon name="more-fill" size="20" class="tui-right" color="#666"></tui-icon>
-      </view>
-      <view class="tui-list-cell tui-last">
-        <view class="tui-bold tui-cell-title">运费</view>
-        <view class="tui-selected-box">在线支付免运费</view>
-      </view>
-      <view class="tui-guarantee">
-        <view class="tui-guarantee-item">
-          <tui-icon name="circle-selected" size="14" color="#999"></tui-icon>
-          <text class="tui-pl">可配送海外</text>
-        </view>
-        <view class="tui-guarantee-item">
-          <tui-icon name="circle-selected" size="14" color="#999"></tui-icon>
-          <text class="tui-pl">店铺发货&售后</text>
-        </view>
-        <view class="tui-guarantee-item">
-          <tui-icon name="circle-selected" size="14" color="#999"></tui-icon>
-          <text class="tui-pl">7天无理由退货</text>
-        </view>
-        <view class="tui-guarantee-item">
-          <tui-icon name="circle-selected" size="14" color="#999"></tui-icon>
-          <text class="tui-pl">闪电退款</text>
-        </view>
-        <view class="tui-guarantee-item">
-          <tui-icon name="circle-selected" size="14" color="#999"></tui-icon>
-          <text class="tui-pl">极速审核</text>
-        </view>
+        <view class="tui-sub-title tui-size tui-gray">{{detail.Address}}</view>
+        
       </view>
     </view>
 
     <view class="tui-cmt-box tui-mtop tui-radius-all">
       <view class="tui-list-cell tui-last tui-between">
-        <view class="tui-bold tui-cell-title">评价</view>
-        <view bindtap="common">
-          <text class="tui-cmt-all">查看全部</text>
-          <tui-icon name="more-fill" size="20" color="#ff201f"></tui-icon>
-        </view>
+        <view class="tui-bold tui-cell-title">房源简介</view>
       </view>
-
       <view class="tui-cmt-content tui-padding">
-        <view class="tui-cmt-user">
-          <image src="../../static/images/news/avatar_2.jpg" class="tui-acatar"></image>
-          <view>z***9</view>
+        <view class="tui-cmt">{{detail.Content}}</view>
+        <!-- <view class="tui-attr">颜色：叠层钛钢流苏耳环（A74）</view> -->
+      </view>
+    </view>
+    <view class="tui-basic-info tui-mtop tui-radius-all">
+      <view class="tui-list-cell tui-last tui-between">
+        <view class="tui-bold tui-cell-title ts-title">房型介绍</view>
+      </view>
+      <view class="tui-cmt-content tui-padding ts-cont">
+        <view class="ts-list {{index%2===0?'mr-30':''}} {{hotels_index===index?'ts-list-active':''}}" wx:for="{{hotels}}" wx:key="index" data-index="{{index}}" bindtap="tabHotels" id="{{item.Id}}">
+          <view class="ts-image"><image src="{{item.Url_path}}"/></view>
+          <view class="ts-name">
+            <view class="name">{{item.Name}}</view>
+          </view>
         </view>
-        <view class="tui-cmt">物流很快，很适合我的风格❤</view>
-        <view class="tui-attr">颜色：叠层钛钢流苏耳环（A74）</view>
-      </view>
-
-      <view class="tui-cmt-btn">
-        <tui-tag type="black" plain="{{true}}" tui-tag-class="tui-tag-cmt" bindtap="common">查看全部评价</tui-tag>
       </view>
     </view>
 
-    <view class="tui-product-img tui-radius-all">
+    <view class="tui-basic-info tui-mtop tui-radius-all">
+      <view class="tui-guarantee">
+        <view class="tui-guarantee-item" wx:for="{{facility}}" wx:key="index">
+          <tui-icon name="circle-selected" size="14" color="#999"></tui-icon>
+          <text class="tui-pl">{{item}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="tui-product-img tui-radius-all">
       <image src="https://www.thorui.cn/img/detail/{{index+1}}.jpg" wx:for="{{20}}" wx:key="index" mode="widthFix"></image>
-    </view>
-    <view class="tui-safearea-bottom"></view>
+    </view> -->
   </view>
 
 </view>

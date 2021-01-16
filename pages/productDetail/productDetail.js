@@ -7,56 +7,22 @@ Page({
     opcity: 0,
     iconOpcity: 0.5,
     banner: [
-      "https://www.thorui.cn/img/product/11.jpg",
-      "https://www.thorui.cn/img/product/2.png",
-      "https://www.thorui.cn/img/product/33.jpg",
-      "https://www.thorui.cn/img/product/4.png",
-      "https://www.thorui.cn/img/product/55.jpg",
-      "https://www.thorui.cn/img/product/6.png",
-      "https://www.thorui.cn/img/product/7.jpg",
-      "https://www.thorui.cn/img/product/8.jpg"
+      // "https://www.thorui.cn/img/product/11.jpg",
+      // "https://www.thorui.cn/img/product/2.png",
+      // "https://www.thorui.cn/img/product/33.jpg",
+      // "https://www.thorui.cn/img/product/4.png",
+      // "https://www.thorui.cn/img/product/55.jpg",
+      // "https://www.thorui.cn/img/product/6.png",
+      // "https://www.thorui.cn/img/product/7.jpg",
+      // "https://www.thorui.cn/img/product/8.jpg"
     ],
     bannerIndex: 0,
-    topMenu: [{
-      icon: "message",
-      text: "消息",
-      size: 26,
-      badge: 3
-    }, {
-      icon: "home",
-      text: "首页",
-      size: 23,
-      badge: 0
-    }, {
-      icon: "people",
-      text: "我的",
-      size: 26,
-      badge: 0
-    }, {
-      icon: "cart",
-      text: "购物车",
-      size: 23,
-      badge: 2
-    }, {
-      icon: "kefu",
-      text: "客服小蜜",
-      size: 26,
-      badge: 0
-    }, {
-      icon: "feedback",
-      text: "我要反馈",
-      size: 23,
-      badge: 0
-    }, {
-      icon: "share",
-      text: "分享",
-      size: 26,
-      badge: 0
-    }],
-    menuShow: false,
-    popupShow: false,
-    value: 1,
-    collected: false
+    imgheights:[],
+    detail:{},
+    hotels:[],
+    id:"",
+    facility:[],
+    hotels_index:''
   },
   onLoad: function (options) {
     let obj = wx.getMenuButtonBoundingClientRect();
@@ -73,6 +39,10 @@ Page({
         }
       })
     });
+    this.setData({
+      id:options.id
+    })
+    this.getInfo(options.id)
   },
   bannerChange: function (e) {
     this.setData({
@@ -101,48 +71,72 @@ Page({
   back: function () {
     wx.navigateBack()
   },
-  openMenu: function () {
+  getInfo(id){
+    util.request("/gethotelinfo", {"hotel_id":id}, "POST", false, false).then((res) => {
+      if (res && res.code === 200) {
+        var imgs = []
+        res.imgs.map(x=>{
+          imgs.push(x.Url_path)
+        })
+        var facility = ''
+        res.hotels.map(x=>{
+          facility +=x.Facility_name
+        })
+        facility = [...new Set(facility.split(','))]
+        this.setData({
+          detail:res.data,
+          banner:imgs,
+          facility:facility,
+          hotels:res.hotels
+        })
+      }
+    })
+  },
+  imageLoad (e) {
+    var imgwidth = e.detail.width;//获取图片实际宽度
+    var imgheight = e.detail.height;//获取图片实际高度;
+    //计算的高度值  
+    var imgheight = 750 / imgwidth * imgheight; // （微信小程序默认总宽度750rpx）换算rpx单位的高度值
+    let imgheights = this.data.imgheights
+    //把当前图片的高度记录到图片数组里  
+    imgheights[e.currentTarget.dataset.index]=imgheight
     this.setData({
-      menuShow: true
+      imgheights,
     })
   },
-  closeMenu: function () {
+  tabHotels(e){
+    var facility = ''
+    if (this.data.hotels_index !== e.currentTarget.dataset.index) {
+      facility = this.data.hotels[e.currentTarget.dataset.index].Facility_name.split(',')
+    } else {
+      this.data.hotels.map(x=>{
+        facility +=x.Facility_name
+      })
+      facility = [...new Set(facility.split(','))]
+    }
     this.setData({
-      menuShow: false
+      hotels_index: this.data.hotels_index !== e.currentTarget.dataset.index ? e.currentTarget.dataset.index:'',
+      facility:facility
     })
   },
-  showPopup: function () {
-    this.setData({
-      popupShow: true
-    })
-  },
-  hidePopup: function () {
-    this.setData({
-      popupShow: false
-    })
-  },
-  change: function (e) {
-    this.setData({
-      value: e.detail.value
-    })
-  },
-  collecting: function () {
-    this.setData({
-      collected: !this.data.collected
-    })
-  },
-  common: function () {
-    util.toast("功能开发中~")
-  },
-  submit() {
-    this.hidePopup()
-    wx.navigateTo({
-      url: '../mall-extend/submitOrder/submitOrder'
-    })
-  },
-  coupon(){
-    wx.navigateTo({
-      url: '../mall-extend/coupon/coupon'
-    })
+  onShareAppMessage: (res) => {
+    if (res.from === 'button') {
+      console.log("来自页面内转发按钮");
+      return {
+        title: res.target.dataset.Name,
+        path: '/pages/productDetail/productDetail?id='+res.target.dataset.id,
+        imageUrl: res.target.dataset.img,
+        success: (res) => {
+          console.log("转发成功", res);
+        },
+        fail: (res) => {
+          console.log("转发失败", res);
+        }
+      }
+    }
+    else {
+      console.log("来自右上角转发菜单")
+      return 
+    }
   }
 })

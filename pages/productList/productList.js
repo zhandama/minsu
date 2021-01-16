@@ -1,14 +1,12 @@
 const util = require('../../utils/util.js')
+const app = getApp()
 Page({
   data: {
     searchKey: "", //搜索关键词
     width: 200, //header宽度
     height: 64, //header高度
     inputTop: 0, //搜索框距离顶部距离
-    arrowTop: 0, //箭头距离顶部距离
     dropScreenH: 0, //下拉筛选框距顶部距离
-    attrData: [],
-    attrIndex: -1,
     dropScreenShow: false,
     scrollTop: 0,
     tabIndex: 0, //顶部筛选索引
@@ -16,89 +14,42 @@ Page({
     drawer: false,
     drawerH: 0, //抽屉内部scrollview高度
     selectH: 0,
-    productList: [{
-        img: 1,
-        name: "源居六然·西湖",
-        sale: 599,
-        factory: 899,
-        address: "西湖旅宿"
-      },
-      {
-        img: 2,
-        name: "杭州东梓关守一茶舍民宿",
-        sale: 29,
-        factory: 69,
-        address: "场口镇东梓关村东梓新居A-57"
-      },
-      {
-        img: 3,
-        name: "临安南山有约民宿",
-        sale: 299,
-        factory: 699,
-        address: "西湖旅宿"
-      },
-      {
-        img: 4,
-        name: "杭州云月山间",
-        sale: 1599,
-        factory: 2899,
-        address: "场口镇东梓关村东梓新居A-57"
-      },
-      {
-        img: 5,
-        name: "杭州西湖桂墅民宿",
-        sale: 599,
-        factory: 899,
-        address: "天目山镇告岭村东关一组关口9号"
-      },
-      {
-        img: 6,
-        name: "杭州东梓关守一茶舍民宿",
-        sale: 599,
-        factory: 899,
-        address: "天目山镇告岭村东关一组关口9号"
-      },
-      {
-        img: 1,
-        name: "欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜",
-        sale: 599,
-        factory: 899,
-        address: "青芝坞137-138号"
-      },
-      {
-        img: 2,
-        name: "德国DMK进口牛奶",
-        sale: 29,
-        factory: 69,
-        address: "河桥镇曹家村58号"
-      },
-      {
-        img: 3,
-        name: "【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红",
-        sale: 299,
-        factory: 699,
-        address: "天目山镇告岭村东关一组关口9号"
-      },
-      {
-        img: 4,
-        name: "百雀羚套装女补水保湿护肤品",
-        sale: 1599,
-        factory: 2899,
-        address: "青芝坞137-138号"
-      }
-    ],
+    productList: [],
     pageIndex: 1,
     loadding: false,
-    pullUpOn: true
+    pullUpOn: true,
+    areas:[
+      {name:'不限',id:''},
+      {name:'西湖区',id:'0012978'},
+      {name:'萧山区',id:'0011483'},
+      {name:'桐庐县',id:'0011484'},
+      {name:'淳安县',id:'0011485'},
+      {name:'建德市',id:'0011486'},
+      {name:'余杭区',id:'0011487'},
+      {name:'临安市',id:'0011488'},
+      {name:'富阳区',id:'0011489'},
+      {name:'拱墅区',id:'0012974'},
+      {name:'其他',id:'0012979'},
+    ],
+    params:{
+      areaId:'',
+      num:'',
+      type:'0',
+      page:'1',
+      limit:'20',
+      keyWords:''
+    },
+    paramsCopy:''
   },
-  onLoad: function(options) {
+  onLoad(options) {
     let obj = wx.getMenuButtonBoundingClientRect();
     this.setData({
       width: obj.left,
       height: obj.top + obj.height + 8,
       inputTop: obj.top + (obj.height - 30) / 2,
-      arrowTop: obj.top + (obj.height - 32) / 2,
-      searchKey: options.searchKey || ""
+      searchKey: options.searchKey || "",
+      'params.areaId':app.globalData.areaId,
+      'params.page': '1'
     }, () => {
       wx.getSystemInfo({
         success: (res) => {
@@ -110,57 +61,42 @@ Page({
         }
       })
     });
-    this.getList({pageIndex:1})
+    this.getList()
   },
   getList(){
-    util.request("/gethotel", {"page":"1","limit":"20","type":"1","num":"3"}, "POST", false, true).then((res) => {
+    if (this.data.params.page == 1) {
+      this.setData({
+        productList:[]
+      })
+    }
+    util.request("/gethotel", this.data.params, "POST", false, false).then((res) => {
       if (res && res.code === 200) {
         this.setData({
-          productList: res.data,
-          pageIndex: 1,
+          productList: this.data.productList.concat(res.data),
+          'params.page': Number(this.data.params.page)+1+'',
           pullUpOn: true,
           loadding: false
         })
+        if (res.data.length<this.data.params.limit) {
+          this.setData({
+            pullUpOn: false
+          })
+        }
       }
     })
   },
-  onPullDownRefresh: function() {
-    let loadData = JSON.parse(JSON.stringify(this.data.productList));
-    loadData = loadData.splice(0, 10)
+  onPullDownRefresh() {
     this.setData({
-      productList: loadData,
-      pageIndex: 1,
-      pullUpOn: true,
-      loadding: false
+      'params.page': '1'
     })
+    this.getList()
     wx.stopPullDownRefresh()
   },
-  onReachBottom: function() {
+  onReachBottom() {
     if (!this.data.pullUpOn) return;
     this.getList({pageIndex:this.pageIndex})
-    // this.setData({
-    //   loadding: true
-    // }, () => {
-    //   if (this.data.pageIndex == 4) {
-    //     this.setData({
-    //       loadding: false,
-    //       pullUpOn: false
-    //     })
-    //   } else {
-    //     let loadData = JSON.parse(JSON.stringify(this.data.productList));
-    //     loadData = loadData.splice(0, 10)
-    //     if (this.data.pageIndex == 1) {
-    //       loadData = loadData.reverse();
-    //     }
-    //     this.setData({
-    //       productList: this.data.productList.concat(loadData),
-    //       pageIndex: this.data.pageIndex + 1,
-    //       loadding: false
-    //     })
-    //   }
-    // })
   },
-  screen: function(e) {
+  screen(e) {
     let index = e.currentTarget.dataset.index;
     if (index == 0) {
       this.setData({
@@ -172,34 +108,49 @@ Page({
       })
     } else if (index == 2) {
       this.setData({
-        isList: !this.data.isList
-      })
-    } else if (index == 3) {
-      this.setData({
+        paramsCopy:JSON.stringify(this.data.params),
         drawer: true
       })
     }
   },
-  closeDrawer: function() {
+  closeDrawer() {
     this.setData({
       drawer: false
     })
+    if (this.data.paramsCopy!=JSON.stringify(this.data.params)){
+      this.setData({
+        'params.page': '1'
+      })
+      this.getList()
+    }
   },
-  back: function() {
+  back() {
     if (this.data.drawer) {
       this.closeDrawer()
     } else {
       wx.navigateBack()
     }
   },
-  search: function() {
+  detail(e) {
+    var id = e.currentTarget.id
     wx.navigateTo({
-      url: '../news-search/news-search'
+      url: `../productDetail/productDetail?id=${id}`
     })
   },
-  detail: function() {
-    wx.navigateTo({
-      url: '../productDetail/productDetail'
+  areaClick(e){
+    this.setData({
+      'params.areaId':e.currentTarget.id
+    })
+  },
+  layoutClick(e){
+    var layout = e.currentTarget.dataset.layout,type = '1'
+    if (this.data.params.num === layout) {
+      layout = '';
+      type = '0'
+    }
+    this.setData({
+      'params.type':type,
+      'params.num':layout
     })
   }
 })
