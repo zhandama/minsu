@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/productList/productList",
+    "pages/seasons/seasons",
     "pages/productDetail/productDetail"
   ],
   "window":{
