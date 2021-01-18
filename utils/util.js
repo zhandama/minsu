@@ -30,7 +30,8 @@ const utils = {
   interfaceUrl: function() {
     //接口地址
     // return "https://www.thorui.cn";
-    return "http://101.37.202.197:8091";
+    // return "http://101.37.202.197:8091";
+    return "http://www.hzminsu.cn:8091"
   },
   toast: function(text, duration, success) {
     wx.showToast({
