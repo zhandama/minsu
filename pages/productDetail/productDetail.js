@@ -121,9 +121,9 @@ Page({
   },
   onShareAppMessage: (res) => {
     if (res.from === 'button') {
-      console.log("来自页面内转发按钮");
+      console.log("来自页面内转发按钮",res.target.dataset.add);
       return {
-        title: res.target.dataset.Name,
+        title: res.target.dataset.name,
         path: '/pages/productDetail/productDetail?id='+res.target.dataset.id,
         imageUrl: res.target.dataset.img,
         success: (res) => {

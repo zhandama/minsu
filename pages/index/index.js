@@ -43,4 +43,7 @@ Page({
       url: `../productDetail/productDetail?id=${id}`
     })
   },
+  onShareAppMessage: (res) => {
+    return ''
+  }
 })
