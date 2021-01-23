@@ -41,6 +41,13 @@ Page({
     },
     paramsCopy:''
   },
+  onShow(){
+    this.setData({
+      'params.areaId':app.globalData.areaId,
+      'params.page': '1'
+    })
+    this.getList()
+  },
   onLoad(options) {
     let obj = wx.getMenuButtonBoundingClientRect();
     this.setData({
