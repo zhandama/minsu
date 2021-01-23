@@ -69,7 +69,18 @@ Page({
     })
   },
   back: function () {
-    wx.navigateBack()
+    let pages = getCurrentPages(); //获取所有页面
+    if (pages.length <= 1){
+    // 返回首页
+        wx.switchTab({
+          url: '/pages/index/index',
+        });
+    } else {
+    // 返回上一页
+      wx.navigateBack({
+        delta: 1,
+      });
+    }
   },
   getInfo(id){
     util.request("/gethotelinfo", {"hotel_id":id}, "POST", false, false).then((res) => {
