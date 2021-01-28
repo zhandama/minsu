@@ -18,26 +18,14 @@ Page({
     pageIndex: 1,
     loadding: false,
     pullUpOn: true,
-    areas:[
-      {name:'不限',id:''},
-      {name:'西湖区',id:'0012978'},
-      {name:'萧山区',id:'0011483'},
-      {name:'桐庐县',id:'0011484'},
-      {name:'淳安县',id:'0011485'},
-      {name:'建德市',id:'0011486'},
-      {name:'余杭区',id:'0011487'},
-      {name:'临安市',id:'0011488'},
-      {name:'富阳区',id:'0011489'},
-      {name:'拱墅区',id:'0012974'},
-      {name:'其他',id:'0012979'},
-    ],
     params:{
-      areaId:'',
+      area_id:'',
       num:'',
       type:'0',
-      page:'1',
+      page:'0',
       limit:'20',
-      keyWords:''
+      keyWords:'',
+      hot:''
     },
     paramsCopy:''
   },

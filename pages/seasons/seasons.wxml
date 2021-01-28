@@ -1,37 +1,7 @@
 <view class="container">
-  <!--header-->
-  <view class="tui-header-box">
-    <view class="tui-header" style="height:40px">
-      <view class="tui-searchbox" style="margin:10px 20px 0 20px" bindtap="search">
-        <!-- <icon type="search" size='13' color='#999'></icon> -->
-        <image src="../../static/images/search.png" class="search-image"></image>
-        <input class="tui-search-text" wx:if="{{!searchKey}}" placeholder="搜索目的地/关键字/民宿"></input>
-        <view class="tui-search-key" wx:if="{{searchKey}}">
-          <view class="tui-key-text">{{searchKey}}</view>
-          <tui-icon name="shut" size='12' color='#fff'></tui-icon>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!--header-->
-  <!--screen-->
-  <view class="tui-header-screen" style="top:40px">
-    <view class="tui-screen-top">
-      <view class="tui-top-item {{tabIndex==0?'tui-active tui-bold':''}}" data-index="0" bindtap="screen">
-        <view>综合</view>
-      </view>
-      <view class="tui-top-item {{tabIndex==1?'tui-active tui-bold':''}}" bindtap="screen" data-index="1">热门</view>
-      <view class="tui-top-item" bindtap="screen" data-index="2">
-        <text>筛选</text>
-        <tui-icon name="screen" size="12" color="#333" tui-icon-class="tui-ml" bold="{{true}}"></tui-icon>
-      </view>
-    </view>
-  </view>
-  <!--screen-->
-
   <!--list-->
   <scroll-view bindscrolltoupper="topLoad"  >
-  <view class="tui-product-list" style="margin-top:100px">
+  <view class="tui-product-list">
    
     <view class="tui-product-container">
       <block wx:for="{{productList}}" wx:key="index" >

@@ -1,14 +1,14 @@
 <!--index.wxml-->
 <view class="container">
    <swiper indicator-dots autoplay circular interval="5000" duration="150" class="swiper" >
-      <swiper-item catchtap="bindViewTap" >
+      <swiper-item catchtap="bindViewSea" >
         <image src="../../static/images/ban.jpg" class="slide-image" mode="widthFix"/>
       </swiper-item>
-      <swiper-item catchtap="bindViewTap">
+      <swiper-item catchtap="bindViewSea">
         <image src="../../static/images/ban2.jpg" class="slide-image" mode="widthFix"/>
       </swiper-item>
     </swiper>
-    <view class="index-search" bindtap="bindViewTap" >
+    <view class="index-search" bindtap="bindViewSearch" >
       <image src="../../static/images/search.png" class="search-image"/>
       <view class="search-suxian"></view>
       <view class="search-input">搜索目的地/关键字/民宿</view>

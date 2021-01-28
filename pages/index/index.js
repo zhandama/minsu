@@ -24,12 +24,23 @@ Page({
       url: `../productList/productList`
     })
   },
+  bindViewSea(id){
+    wx.navigateTo({
+      url: `../seasons/seasons?id=${id}`
+    })
+  },
+  bindViewSearch(){
+    app.globalData.searchKeyWords = true
+    wx.switchTab({
+      url: `../productList/productList`
+    })
+  },
   onLoad() {
     this.getInfo()
   },
   getInfo(){
-    var page = parseInt(Math.random()*10)+1+""
-    util.request("/gethotel", {"page":page,"limit":"4","type":"1","num":"3"}, "POST", false, true).then((res) => {
+    var page = parseInt(Math.random()*10)+""
+    util.request("/gethotel", {"page":page,"limit":"4","type":"","num":"","hot":"","keyWords":"","area_id":""}, "POST", false, true).then((res) => {
       if (res && res.code === 200 && res.data) {
         this.setData({
           lists:res.data

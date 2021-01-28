@@ -6,23 +6,14 @@ Page({
     scrollH: 0, //滚动总高度
     opcity: 0,
     iconOpcity: 0.5,
-    banner: [
-      // "https://www.thorui.cn/img/product/11.jpg",
-      // "https://www.thorui.cn/img/product/2.png",
-      // "https://www.thorui.cn/img/product/33.jpg",
-      // "https://www.thorui.cn/img/product/4.png",
-      // "https://www.thorui.cn/img/product/55.jpg",
-      // "https://www.thorui.cn/img/product/6.png",
-      // "https://www.thorui.cn/img/product/7.jpg",
-      // "https://www.thorui.cn/img/product/8.jpg"
-    ],
+    banner: [],
     bannerIndex: 0,
     imgheights:[],
     detail:{},
     hotels:[],
     id:"",
     facility:[],
-    hotels_index:''
+    hotels_index:'',
   },
   onLoad: function (options) {
     let obj = wx.getMenuButtonBoundingClientRect();

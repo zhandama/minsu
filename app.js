@@ -37,7 +37,7 @@ App({
   onError(err) {
   },
   globalData: {
-    searchKeyWords: "",
-    areaId:""
+    searchKeyWords: false,
+    areaId:"",
   }
 })

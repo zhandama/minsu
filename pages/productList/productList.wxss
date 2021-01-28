@@ -46,6 +46,7 @@ page {
 
 .tui-search-text {
   padding-left: 16rpx;
+  width: 85%;
 }
 
 .tui-search-key {

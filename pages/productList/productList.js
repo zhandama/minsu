@@ -15,7 +15,6 @@ Page({
     drawerH: 0, //抽屉内部scrollview高度
     selectH: 0,
     productList: [],
-    pageIndex: 1,
     loadding: false,
     pullUpOn: true,
     areas:[
@@ -32,31 +31,38 @@ Page({
       {name:'其他',id:'0012979'},
     ],
     params:{
-      areaId:'',
+      area_id:'',
       num:'',
       type:'0',
-      page:'1',
+      page:'0',
       limit:'20',
-      keyWords:''
+      keyWords:'',
+      hot:''
     },
-    paramsCopy:''
+    paramsCopy:'',
+    inputShowed:false,
   },
   onShow(){
     this.setData({
-      'params.areaId':app.globalData.areaId,
-      'params.page': '1'
+      'params.area_id':app.globalData.areaId,
+      'params.page': '0'
     })
     this.getList()
   },
   onLoad(options) {
     let obj = wx.getMenuButtonBoundingClientRect();
+    if (app.globalData.searchKeyWords) {
+      this.setData({
+        inputShowed:true
+      })
+    }
     this.setData({
       width: obj.left,
       height: obj.top + obj.height + 8,
       inputTop: obj.top + (obj.height - 30) / 2,
       searchKey: options.searchKey || "",
-      'params.areaId':app.globalData.areaId,
-      'params.page': '1'
+      'params.area_id':app.globalData.areaId,
+      'params.page': '0'
     }, () => {
       wx.getSystemInfo({
         success: (res) => {
@@ -70,21 +76,31 @@ Page({
     });
     this.getList()
   },
+  search(e){
+    console.log(e.detail.value)
+    if (this.data.keyWords!=e.detail.value) {
+      this.setData({
+        "params.keyWords":e.detail.value,
+        "params.page":0,
+      })
+      this.getList()
+    }
+  },
   getList(){
-    if (this.data.params.page == 1) {
+    if (this.data.params.page == 0) {
       this.setData({
         productList:[]
       })
     }
     util.request("/gethotel", this.data.params, "POST", false, false).then((res) => {
-      if (res && res.code === 200) {
+      if (res && res.code === 200 && res.data) {
         this.setData({
           productList: this.data.productList.concat(res.data),
           'params.page': Number(this.data.params.page)+1+'',
           pullUpOn: true,
           loadding: false
         })
-        if (res.data.length<this.data.params.limit) {
+        if (res.data && res.data.length<this.data.params.limit) {
           this.setData({
             pullUpOn: false
           })
@@ -94,25 +110,31 @@ Page({
   },
   onPullDownRefresh() {
     this.setData({
-      'params.page': '1'
+      'params.page': '0'
     })
     this.getList()
     wx.stopPullDownRefresh()
   },
   onReachBottom() {
     if (!this.data.pullUpOn) return;
-    this.getList({pageIndex:this.pageIndex})
+    this.getList()
   },
   screen(e) {
     let index = e.currentTarget.dataset.index;
     if (index == 0) {
       this.setData({
-        tabIndex: 0
+        tabIndex: 0,
+        'params.hot':"",
+        'params.page': '0'
       })
+      this.getList()
     } else if (index == 1) {
       this.setData({
-        tabIndex: 1
+        tabIndex: 1,
+        'params.hot':"1",
+        'params.page': '0'
       })
+      this.getList()
     } else if (index == 2) {
       this.setData({
         paramsCopy:JSON.stringify(this.data.params),
@@ -126,7 +148,7 @@ Page({
     })
     if (this.data.paramsCopy!=JSON.stringify(this.data.params)){
       this.setData({
-        'params.page': '1'
+        'params.page': '0'
       })
       this.getList()
     }
@@ -146,7 +168,7 @@ Page({
   },
   areaClick(e){
     this.setData({
-      'params.areaId':e.currentTarget.id
+      'params.area_id':e.currentTarget.id
     })
   },
   layoutClick(e){
