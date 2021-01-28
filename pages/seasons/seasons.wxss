@@ -451,10 +451,14 @@ page {
   padding-top: 10rpx;
   font-size: 24rpx;
   color: #656565;
+  width: 490rpx;
 }
 
 .search-image{
   width: 30rpx;
   height: 30rpx;
   padding-left:5px
+}
+.sea-image{
+  width: 100%;
 }

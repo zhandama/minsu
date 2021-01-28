@@ -81,7 +81,7 @@ Page({
     if (this.data.keyWords!=e.detail.value) {
       this.setData({
         "params.keyWords":e.detail.value,
-        "params.page":0,
+        "params.page":'0',
       })
       this.getList()
     }

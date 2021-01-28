@@ -452,6 +452,7 @@ page {
   padding-top: 10rpx;
   font-size: 24rpx;
   color: #656565;
+  width: 490rpx;
 }
 
 .search-image{
