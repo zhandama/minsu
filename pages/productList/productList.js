@@ -43,6 +43,11 @@ Page({
     inputShowed:false,
   },
   onShow(){
+    if (app.globalData.searchKeyWords) {
+      this.setData({
+        inputShowed:true
+      })
+    }
     this.setData({
       'params.area_id':app.globalData.areaId,
       'params.page': '0'
@@ -51,11 +56,6 @@ Page({
   },
   onLoad(options) {
     let obj = wx.getMenuButtonBoundingClientRect();
-    if (app.globalData.searchKeyWords) {
-      this.setData({
-        inputShowed:true
-      })
-    }
     this.setData({
       width: obj.left,
       height: obj.top + obj.height + 8,
@@ -75,6 +75,12 @@ Page({
       })
     });
     this.getList()
+  },
+  inputBlur(){
+    app.globalData.searchKeyWords = false;
+    this.setData({
+      "inputShowed":false
+    })
   },
   search(e){
     console.log(e.detail.value)
