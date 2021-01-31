@@ -179,6 +179,16 @@ Page({
       'params.area_id':e.currentTarget.id
     })
   },
+  errorFunction(e){
+    let index = e.currentTarget.dataset.index;
+    if (e.type == "error") {//加载图片的类型为error时走下面的步骤
+      let imgList = this.data.productList//获取当前图片所在数组
+      imgList[index]['Url_path'] = '../../static/images/noimg.jpg' //错误图片替换为默认图片
+      this.setData({
+        productList: imgList
+      })
+    }
+  },
   layoutClick(e){
     var layout = e.currentTarget.dataset.layout,type = '1'
     if (this.data.params.num === layout) {

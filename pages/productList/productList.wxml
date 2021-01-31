@@ -35,7 +35,7 @@
    
     <view class="tui-product-container">
       <block wx:for="{{productList}}" wx:key="index">
-        <template is="productItem" data="{{item,isList:isList}}" />
+        <template is="productItem" data="{{item,isList:isList,index}}" />
       </block>
     </view>
     
@@ -102,7 +102,7 @@
   <template name="productItem">
     <!--商品列表-->
     <view class="tui-pro-item {{isList?'tui-flex-list':''}}" id="{{item.Id}}" hover-class="hover" hover-start-time="150" bindtap="detail">
-      <view class="tui-pro-imgcont"><image src="{{item.Url_path}}" class="tui-pro-img {{isList?'tui-proimg-list':''}}"  /></view>
+      <view class="tui-pro-imgcont"><image src="{{item.Url_path}}" data-index="{{index}}" binderror="errorFunction" class="tui-pro-img {{isList?'tui-proimg-list':''}}"  /></view>
       <view class="tui-pro-content">
         <view class="tui-pro-tit">{{item.Name}}</view>
         <view class="tui-pro-pay">{{item.Address}}</view>
