@@ -5,7 +5,7 @@
       <view class="tui-searchbox" style="margin:10px 20px 0 20px" >
         <!-- <icon type="search" size='13' color='#999'></icon> -->
         <image src="../../static/images/search.png" class="search-image"></image>
-        <input class="tui-search-text" wx:if="{{!searchKey}}" placeholder="搜索目的地/关键字/民宿" bindconfirm="search" focus="{{inputShowed}}"></input>
+        <input class="tui-search-text" wx:if="{{!searchKey}}" placeholder="搜索目的地/关键字/民宿" bindconfirm="search" focus="{{inputShowed}}" bindblur="inputBlur"></input>
         <view class="tui-search-key" wx:if="{{searchKey}}">
           <view class="tui-key-text">{{searchKey}}</view>
           <tui-icon name="shut" size='12' color='#fff'></tui-icon>

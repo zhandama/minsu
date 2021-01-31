@@ -50,14 +50,14 @@ Page({
       })
       this.getList()
     }
-  },
-  onLoad(options) {
-    let obj = wx.getMenuButtonBoundingClientRect();
     if (app.globalData.searchKeyWords) {
       this.setData({
         inputShowed:true
       })
     }
+  },
+  onLoad(options) {
+    let obj = wx.getMenuButtonBoundingClientRect();
     this.setData({
       width: obj.left,
       height: obj.top + obj.height + 8,
@@ -77,6 +77,12 @@ Page({
       })
     });
     this.getList()
+  },
+  inputBlur(){
+    app.globalData.searchKeyWords = false;
+    this.setData({
+      "inputShowed":false
+    })
   },
   search(e){
     console.log(e.detail.value)
