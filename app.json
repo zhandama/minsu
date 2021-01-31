@@ -2,8 +2,9 @@
   "pages":[
     "pages/index/index",
     "pages/productList/productList",
+    "pages/productDetail/productDetail",
     "pages/seasons/seasons",
-    "pages/productDetail/productDetail"
+    "pages/seasonDetail/seasonDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -16,7 +16,7 @@ Page({
     params:{
       page:'0',
       limit:'20',
-      season:''
+      season:'春'
     },
   },
   onLoad(options) {
@@ -69,7 +69,7 @@ Page({
   detail(e) {
     var id = e.currentTarget.id
     wx.navigateTo({
-      url: `../productDetail/productDetail?id=${id}`
+      url: `../seasonDetail/seasonDetail?id=${id}`
     })
   }
 })
