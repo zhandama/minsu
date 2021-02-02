@@ -1,5 +1,5 @@
 <view class="container">
-  <view><image src="/static/images/seasons_ban1.jpg" class="sea-image" mode="widthFix"></image></view>
+  <view wx:if="{{params.season=='冬'}}"><image src="/static/images/seasons_ban1.jpg" class="sea-image" mode="widthFix"></image></view>
   <!--list-->
   <scroll-view bindscrolltoupper="topLoad"  >
   <view class="tui-product-list">
