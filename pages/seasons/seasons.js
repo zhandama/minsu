@@ -14,9 +14,15 @@ Page({
     loadding: false,
     pullUpOn: true,
     params:{
+      area_id:'',
+      num:'',
+      type:'0',
       page:'0',
       limit:'20',
-      season:'春'
+      keyWords:'',
+      hot:'',
+      season:'冬',
+      months:''
     },
   },
   onLoad(options) {
@@ -31,7 +37,7 @@ Page({
         productList:[]
       })
     }
-    util.request("/cxqdlist", this.data.params, "POST", false, false).then((res) => {
+    util.request("/gethotel", this.data.params, "POST", false, false).then((res) => {
       if (res && res.code === 200) {
         this.setData({
           productList: this.data.productList.concat(res.data),
@@ -69,7 +75,7 @@ Page({
   detail(e) {
     var id = e.currentTarget.id
     wx.navigateTo({
-      url: `../seasonDetail/seasonDetail?id=${id}`
+      url: `../productDetail/productDetail?id=${id}`
     })
   }
 })

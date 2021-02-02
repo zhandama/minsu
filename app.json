@@ -3,8 +3,7 @@
     "pages/index/index",
     "pages/productList/productList",
     "pages/productDetail/productDetail",
-    "pages/seasons/seasons",
-    "pages/seasonDetail/seasonDetail"
+    "pages/seasons/seasons"
   ],
   "window":{
     "backgroundTextStyle":"light",

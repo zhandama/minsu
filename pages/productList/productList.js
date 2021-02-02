@@ -37,7 +37,9 @@ Page({
       page:'0',
       limit:'20',
       keyWords:'',
-      hot:''
+      hot:'',
+      season:'',
+      months:''
     },
     paramsCopy:'',
     inputShowed:false,

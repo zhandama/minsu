@@ -40,7 +40,7 @@ Page({
   },
   getInfo(){
     var page = parseInt(Math.random()*10)+""
-    util.request("/gethotel", {"page":page,"limit":"4","type":"","num":"","hot":"","keyWords":"","area_id":""}, "POST", false, true).then((res) => {
+    util.request("/gethotel", {"page":page,"limit":"4","type":"","num":"","hot":"","keyWords":"","area_id":"","season":"","months":""}, "POST", false, true).then((res) => {
       if (res && res.code === 200 && res.data) {
         this.setData({
           lists:res.data
