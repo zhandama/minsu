@@ -26,6 +26,12 @@ Page({
     },
   },
   onLoad(options) {
+    if (options.season) {
+      console.log(options.season)
+      this.setData({
+        'params.season': options.season
+      });
+    }
     this.setData({
       'params.page': '0'
     });

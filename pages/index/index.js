@@ -24,9 +24,9 @@ Page({
       url: `../productList/productList`
     })
   },
-  bindViewSea(id){
+  bindViewSea(e){
     wx.navigateTo({
-      url: `../seasons/seasons?id=${id}`
+      url: `../seasons/seasons?season=${e.target.dataset.season}`
     })
   },
   bindViewSearch(){

@@ -2,10 +2,10 @@
 <view class="container">
    <swiper indicator-dots autoplay circular interval="5000" duration="150" class="swiper" >
       <swiper-item catchtap="bindViewSea" >
-        <image src="../../static/images/ban.jpg" class="slide-image" mode="widthFix"/>
+        <image src="../../static/images/ban.jpg" data-season="春" class="slide-image" mode="widthFix"/>
       </swiper-item>
       <swiper-item catchtap="bindViewSea">
-        <image src="../../static/images/ban2.jpg" class="slide-image" mode="widthFix"/>
+        <image src="../../static/images/ban2.jpg" data-season="冬" class="slide-image" mode="widthFix"/>
       </swiper-item>
     </swiper>
     <view class="index-search" bindtap="bindViewSearch" >
