@@ -193,7 +193,7 @@ Page({
   },
   layoutClick(e){
     var layout = e.currentTarget.dataset.layout,type = '1'
-    if (this.data.params.num === layout) {
+    if (this.data.params.num === layout ||layout=='') {
       layout = '';
       type = '0'
     }
@@ -201,5 +201,8 @@ Page({
       'params.type':type,
       'params.num':layout
     })
+  },
+  onShareAppMessage(){
+    
   }
 })

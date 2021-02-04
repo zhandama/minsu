@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="list-view">
+    <view wx:for="{{newsList}}" wx:key="{{index}}" class="list-cell list-item {{(newsList.length-1)==index?'last':''}}" hover-class="hover" hover-stay-time="150" bindtap="detail">
+      <view class="cell-title-box {{item.img==0?'':'min'}}">
+        <view class="cell-title {{item.img==0?'pdr0':''}}">{{item.title}}</view>
+        <image src='https://cdn2.dujiake.com/uploadfile/220000/225774/225774_1907311621316350953.png' class="img" wx:if="{{item.img!=0}}"></image>
+      </view>
+      <view class="sub-title">
+        <text class="sub-content">{{item.source}}</text>
+      </view>
+    </view>
+
+  </view>
+  <!--加载loadding-->
+   <tui-loadmore visible="{{loadding}}"></tui-loadmore>
+   <tui-nomore visible="{{!pullUpOn}}" ></tui-nomore>
+  <!--加载loadding-->
+</view>

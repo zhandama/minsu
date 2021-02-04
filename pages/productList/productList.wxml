@@ -21,7 +21,7 @@
         <view>综合</view>
       </view>
       <view class="tui-top-item {{tabIndex==1?'tui-active tui-bold':''}}" bindtap="screen" data-index="1">热门</view>
-      <view class="tui-top-item" bindtap="screen" data-index="2">
+      <view class="tui-top-item {{params.area_id!=''||params.type!='0'?'tui-active tui-bold':''}}" bindtap="screen" data-index="2">
         <text>筛选</text>
         <tui-icon name="screen" size="12" color="#333" tui-icon-class="tui-ml" bold="{{true}}"></tui-icon>
       </view>
@@ -62,6 +62,9 @@
           </view> -->
         </view>
         <view class="tui-drawer-content tui-flex-attr">
+          <view class="tui-attr-item {{params.num==''?'tui-btmItem-active':''}}" bindtap="layoutClick" data-layout="">
+            <view class="tui-attr-ellipsis">不限</view>
+          </view>
           <view class="tui-attr-item {{params.num==1?'tui-btmItem-active':''}}" bindtap="layoutClick" data-layout="1">
             <view class="tui-attr-ellipsis">一室</view>
           </view>

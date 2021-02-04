@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/productList/productList",
     "pages/productDetail/productDetail",
-    "pages/seasons/seasons"
+    "pages/seasons/seasons",
+    "pages/news/news",
+    "pages/newsDetail/newsDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -29,6 +31,12 @@
         "iconPath": "static/images/tab-cate.png",
         "selectedIconPath": "static/images/tab-cate-current.png",
         "text": "分类"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "iconPath": "static/images/tab-news.png",
+        "selectedIconPath": "static/images/tab-news-current.png",
+        "text": "资讯"
       }
     ]
   }
