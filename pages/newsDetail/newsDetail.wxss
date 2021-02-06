@@ -31,6 +31,9 @@ page {
 .tui-news-content {
   padding-top: 40rpx;
 }
+.tui-news-content image{
+  max-width: 100%;
+}
 
 .tui-article {
   /* text-indent: 2em; */

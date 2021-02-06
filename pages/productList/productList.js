@@ -96,13 +96,19 @@ Page({
       this.getList()
     }
   },
-  getList(){
+  getList(type){
     if (this.data.params.page == 0) {
       this.setData({
         productList:[]
       })
     }
-    util.request("/gethotel", this.data.params, "POST", false, false).then((res) => {
+    util.request("/gethotel", this.data.params, "POST", false, true).then((res) => {
+      if (type == 'refresh') {
+        wx.showToast({
+          title: '刷新成功',
+          icon: "none"
+        })
+      }
       if (res && res.code === 200 && res.data) {
         this.setData({
           productList: this.data.productList.concat(res.data),
@@ -122,12 +128,16 @@ Page({
     this.setData({
       'params.page': '0'
     })
-    this.getList()
+    this.getList('refresh')
     wx.stopPullDownRefresh()
   },
   onReachBottom() {
     if (!this.data.pullUpOn) return;
-    this.getList()
+    this.setData({
+      loadding: true
+    }, () => {
+      this.getList()
+    })
   },
   screen(e) {
     let index = e.currentTarget.dataset.index;

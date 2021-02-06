@@ -1,33 +1,16 @@
 <view class="container">
   <view class="tui-news-title">
-    我们充分尊重联赛新政，武汉队战术多变训练有素
+    {{contact.subject}}
   </view>
   <view class="tui-sub-info">
     <view class="tui-sub-left">
-      <text class="tui-author">早安君</text>
-      <text>昨天 17:12</text>
+      <!-- <text class="tui-author">早安君</text> -->
+      <text>{{date}}</text>
     </view>
-    <view class="tui-sub-right">阅读 2453</view>
+    <!-- <view class="tui-sub-right">阅读 2453</view> -->
   </view>
   <view class="tui-news-content">
-    <view class="tui-article">
-      北京时间6月22日，重庆斯威队召开了赛前新闻发布会，主教练小克鲁伊夫和球员彭欣力出席。
-    </view>
-    <view class="tui-article">
-      这是一场很重要的比赛，武汉卓尔在中超目前打的还是不错的，现在积分与我们一样。我们面对这个对手做了充分的准备，他们的战术变化很多，我也认为他们是一支训练有素的队伍。虽然这是一场艰难的比赛，我们也充满了动力去拿到我们想要的分数，实现我们的目标。联赛上半程还有两场比赛，我们也会竭尽全力拿到尽量多的分数。
-    </view>
-    <image src="https://cdn2.dujiake.com/uploadfile/220000/225774/225774_1907311621316350953.png" class="tui-article-pic" mode="widthFix"></image>
-    <view class="tui-article">
-      大家下午好，明天非常重要，这星期我们的备战时间比较充裕，我们针对对手做了有效的布置，希望明天给大家呈现精彩的比赛。
-    </view>
-    <view class="tui-article">
-      我相信大家比我更了解他，但是就像刚刚提到的一样，这支球队的战术是丰富而多变的，这就意味着他在应对不同比赛时做了充分的准备。我们非常尊重明天的对手，他们最近状态出色，拿到许多分数。
-    </view>
-    <image src="https://cdn2.dujiake.com/uploadfile/220000/225774/225774_1907311621316350953.png" class="tui-article-pic" mode="widthFix"></image>
-    <view class="tui-article">
-      对我而言，我还是想保持沉默，我不打算就这个问题做过多的评论。因为这个政策的变化是马上实施了，我们肯定是尊重它，然后在我们力所能及的范围上找到最好的应对的方案，我个人意见并不重要，我们尊重和遵守相关决定。
-    </view>
-
+    <rich-text nodes="{{datail}}"></rich-text>
   </view>
 
   <!-- <view class="tui-news-source">消息参考来源：体坛大精汇</view>

@@ -116,7 +116,7 @@
   </template>
 
   <!--加载loadding-->
-  <tui-loadmore visible="{{loadding}}" index="3" type="red"></tui-loadmore>
-  <tui-nomore visible="{{!pullUpOn && isList}}" bgcolor="#f7f7f7"></tui-nomore>
+  <tui-loadmore visible="{{loadding}}" index="3"></tui-loadmore>
+  <tui-nomore visible="{{!pullUpOn && isList}}"></tui-nomore>
   <!--加载loadding-->
 </view>
