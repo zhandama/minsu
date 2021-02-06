@@ -20,6 +20,7 @@ const utils = {
       } else {
         fTime = new Date()
       }
+      console.log(fTime)
       var month = fTime.getMonth() + 1
       var day = fTime.getDate()
       var hours = fTime.getHours()

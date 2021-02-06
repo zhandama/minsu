@@ -1,6 +1,6 @@
 <view class="container">
   <view class="tui-news-title">
-    {{contact.subject}}
+    {{title}}
   </view>
   <view class="tui-sub-info">
     <view class="tui-sub-left">

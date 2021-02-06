@@ -19,7 +19,8 @@
       </view>
     </scroll-view>
     <view class="index-ts">
-      <view class="ts-title">特色民宿</view>
+      <view class="ts-title">特色民宿<view class="ts-tips" bindtap="getInfo"><tui-icon name="exchange" size="16" ></tui-icon>
+      换一换</view></view>
       <view class="ts-cont">
         <view class="ts-list {{index%2===0?'mr-30':''}}" wx:for="{{lists}}" wx:key="index" bindtap="detail" id="{{item.Id}}">
           <view class="ts-image"><image src="{{item.Url_path}}"/></view>

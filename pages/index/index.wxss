@@ -72,7 +72,14 @@ margin-bottom: 50rpx;
 }
 .ts-title{
   height: 70rpx;
-} 
+}
+.ts-tips{
+  float: right;
+  position: relative;
+  font-size:26rpx;
+  top:6px;
+  color:#999;
+}
 .ts-cont{
   display: flex;
   flex-wrap: wrap;

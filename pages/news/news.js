@@ -1,7 +1,7 @@
 const util = require('../../utils/util.js')
 Page({
   data: {
-    pageIndex: 1,
+    pageIndex: 0,
     newsList: [],
     loadding: false,
     pullUpOn: true
@@ -25,17 +25,17 @@ Page({
   },
   detail(e) {
     wx.navigateTo({
-      url: '../newsDetail/newsDetail?articleid='+e.currentTarget.dataset.articleid
+      url: '../newsDetail/newsDetail?id='+e.currentTarget.dataset.id
     })
   },
   getNews(type){
     if (type == 'refresh') {
       this.setData({
-        pageIndex: 1
+        pageIndex: 0
       })
     }
-    util.request("https://www.hzminsu.cn/article!listPage.ajax", 
-    {"pageObject.page":this.data.pageIndex,"pageObject.pagesize":"10","articleVo.status":"open","articleVo.categoryId":"002","articleVo.order":"create_date"}, "GET", false, true).then((res) => {
+    util.request("/getinformantion", 
+    {"page":this.data.pageIndex+'',"limit":"10"}, "POST", false, true).then((res) => {
       if (type == 'refresh') {
         this.setData({
           newsList: [],
@@ -48,15 +48,16 @@ Page({
           icon: "none"
         })
       }
-      if (res && res.code == 'success' && res.data) {
-        res.data.dataList.map(x=>{
-          x.date = util.formatDate(x.createDate)
+      if (res && res.code == '200' && res.data) {
+        res.data.map(x=>{
+          var time = x.text_time.substring(0,(x.text_time.length)-6)
+          x.date = util.formatDate(Number(time))
         })
         this.setData({
-          newsList: this.data.newsList.concat(res.data.dataList),
+          newsList: this.data.newsList.concat(res.data),
           pageIndex: this.data.pageIndex + 1
         })
-        if (res.data.dataList.length<10) {
+        if (res.data.length<10) {
           this.setData({
             loadding: false,
             pullUpOn: false
