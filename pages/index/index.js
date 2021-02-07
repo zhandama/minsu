@@ -15,7 +15,12 @@ Page({
       {name:'桐庐',id:'0011484',imgUrl:'6'},
       {name:'建德',id:'0011486',imgUrl:'7'},
       {name:'富阳',id:'0011489',imgUrl:'8'},
-    ]
+    ],
+    slideWidth: '', //滑块宽
+		slideLeft: 0, //滑块位置
+		totalLength: '', //当前滚动列表总长
+		slideShow: false,
+		slideRatio: '',
   },
   // 事件处理函数
   bindViewTap(e) {
@@ -36,7 +41,14 @@ Page({
     })
   },
   onLoad() {
+    let systemInfo = wx.getSystemInfoSync();
+		this.setData({
+			windowHeight: systemInfo.windowHeight - 35,
+			windowWidth: systemInfo.windowWidth,
+		})
     this.getInfo()
+    //计算比例
+		this.getRatio();
   },
   getInfo(){
     var page = parseInt(Math.random()*10)+""
@@ -48,12 +60,38 @@ Page({
       }
     })
   },
+  //根据分类获取比例
+	getRatio() {
+		const _this = this;
+		if (!_this.data.areas || _this.data.areas.length <= 4) {
+			this.setData({
+				slideShow: false
+			})
+		} else {
+			let _totalLength = _this.data.areas.length * 175; //分类列表总长度
+			let _ratio = 100 / _totalLength * (750 / this.data.windowWidth); //滚动列表长度与滑条长度比例
+			let _showLength = 750 / _totalLength * 100; //当前显示红色滑条的长度(保留两位小数)
+			this.setData({
+				slideWidth: _showLength,
+				totalLength: _totalLength,
+				slideShow: true,
+				slideRatio: _ratio
+			})
+		}
+	},
   detail(e) {
     var id = e.currentTarget.id
     wx.navigateTo({
       url: `../productDetail/productDetail?id=${id}`
     })
   },
+  //slideLeft动态变化
+	getleft(e) {
+    console.log(e.detail.scrollLeft)
+		this.setData({
+			slideLeft: e.detail.scrollLeft * this.data.slideRatio
+		})
+	},
   onShareAppMessage: (res) => {
     return ''
   }

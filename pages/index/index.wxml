@@ -13,11 +13,18 @@
       <view class="search-suxian"></view>
       <view class="search-input">搜索目的地/关键字/民宿</view>
     </view>
-    <scroll-view scroll-left="0" enhanced="true" show-scrollbar="true" scroll-x="true" class="index-category">
+    <scroll-view scroll-left="0" enhanced="true" show-scrollbar="true" scroll-x="true"  class="index-category" bindscroll="getleft">
       <view style="padding:0 20rpx">
         <view class="index-category-img" bindtap="bindViewTap" wx:for="{{areas}}" wx:key="index" id="{{item.id}}"><image src="../../static/images/{{item.imgUrl}}.png"/></view>
       </view>
     </scroll-view>
+    <view wx:if="{{slideShow}}" class="slide">
+      <view class='slide-bar'>
+        <view class="slide-show" 
+          style="width:{{slideWidth}}rpx; margin-left:{{slideLeft<=1 ? 0 : slideLeft+'rpx'}};"></view>
+      </view>
+    </view>
+
     <view class="index-ts">
       <view class="ts-title">特色民宿<view class="ts-tips" bindtap="getInfo"><tui-icon name="exchange" size="16" ></tui-icon>
       换一换</view></view>

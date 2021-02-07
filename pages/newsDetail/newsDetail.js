@@ -7,14 +7,13 @@ Page({
     title:''
   },
   onLoad: function (options) {
-    console.log(options)
     this.getData(options.id)
   },
   getData(id){
     util.request("/zxinfo", 
     {"id":id+''}, "POST", false, true).then((res) => {
       var datail = res.data.Content
-      datail = datail.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
+      datail = datail.replace(/\<img/gi, '<img style="width:100%;height:auto"')
       var time = res.data.Text_time.substring(0,(res.data.Text_time.length)-6)
       this.setData({
         title:res.data.Name,
