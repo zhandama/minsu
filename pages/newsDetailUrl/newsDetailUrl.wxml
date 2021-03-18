@@ -1,0 +1,4 @@
+<view class="container">
+  <web-view src="https://mp.weixin.qq.com/s/-wwZb4-ObbQLQn2B15-iMg"></web-view>
+  <view class="tui-safearea-bottom"></view>
+</view>

@@ -5,7 +5,8 @@
     "pages/productDetail/productDetail",
     "pages/seasons/seasons",
     "pages/news/news",
-    "pages/newsDetail/newsDetail"
+    "pages/newsDetail/newsDetail",
+    "pages/newsDetailUrl/newsDetailUrl"
   ],
   "window":{
     "backgroundTextStyle":"light",

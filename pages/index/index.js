@@ -94,5 +94,10 @@ Page({
 	},
   onShareAppMessage: (res) => {
     return ''
-  }
+  },
+  bindViewUrl(e){
+    wx.navigateTo({
+      url: `/pages/newsDetailUrl/newsDetailUrl`
+    })
+  },
 })
