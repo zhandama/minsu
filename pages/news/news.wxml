@@ -1,6 +1,6 @@
 <view class="container">
   <view class="list-view">
-    <view wx:for="{{newsList}}" wx:key="index" class="list-cell list-item {{(newsList.length-1)==index?'last':''}}" hover-class="hover" hover-stay-time="150" data-id="{{item.id}}" bindtap="detail">
+    <view wx:for="{{newsList}}" wx:key="index" class="list-cell list-item {{(newsList.length-1)==index?'last':''}}" hover-class="hover" hover-stay-time="150" data-id="{{item.id}}" data-zxurl="{{item.zxurl}}" bindtap="detail">
       <view class="cell-title-box {{item.img==0?'':'min'}}">
         <view class="cell-title {{item.img==0?'pdr0':''}}">{{item.name}}</view>
         <image src="{{'https://www.hzminsu.cn/app'+item.image_path}}" class="img" wx:if="{{item.img!=0}}"></image>

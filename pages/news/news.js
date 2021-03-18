@@ -24,9 +24,17 @@ Page({
     })
   },
   detail(e) {
-    wx.navigateTo({
-      url: '../newsDetail/newsDetail?id='+e.currentTarget.dataset.id
-    })
+    console.log(e.currentTarget.dataset.zxurl)
+    if (e.currentTarget.dataset.zxurl&&e.currentTarget.dataset.zxurl.length>0) {
+      wx.navigateTo({
+        url: '../newsDetailUrl/newsDetailUrl?id='+e.currentTarget.dataset.id
+      })
+    } else {
+      wx.navigateTo({
+        url: '../newsDetail/newsDetail?id='+e.currentTarget.dataset.id
+      })
+    }
+    
   },
   getNews(type){
     if (type == 'refresh') {

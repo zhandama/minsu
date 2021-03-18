@@ -1,0 +1,4 @@
+<view class="container">
+  <web-view src="{{zxurl}}"></web-view>
+  <view class="tui-safearea-bottom"></view>
+</view>
