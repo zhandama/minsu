@@ -87,7 +87,6 @@ Page({
   },
   //slideLeft动态变化
 	getleft(e) {
-    console.log(e.detail.scrollLeft)
 		this.setData({
 			slideLeft: e.detail.scrollLeft * this.data.slideRatio
 		})
