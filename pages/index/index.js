@@ -50,9 +50,13 @@ Page({
     //计算比例
 		this.getRatio();
   },
-  getInfo(){
-    var page = parseInt(Math.random()*10)+""
-    util.request("/gethotel", {"page":page,"limit":"4","type":"","num":"","hot":"","keyWords":"","area_id":"","season":"","months":""}, "POST", false, true).then((res) => {
+  getInfo(a){
+    var time = new Date().getMonth()+1
+    // var page = parseInt(Math.random()*10)+""
+    if (a) {
+      time = parseInt(Math.random()*10)+""
+    }
+    util.request("/gethotel", {"area_id":"","num":"","type":"0","page":"0","limit":"4","keyWords":"","hot":"","season":"","months":String(time)}, "POST", false, true).then((res) => {
       if (res && res.code === 200 && res.data) {
         this.setData({
           lists:res.data

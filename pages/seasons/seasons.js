@@ -13,6 +13,7 @@ Page({
     productList: [],
     loadding: false,
     pullUpOn: true,
+    type:'season',
     params:{
       area_id:'',
       num:'',
@@ -21,28 +22,58 @@ Page({
       limit:'20',
       keyWords:'',
       hot:'',
-      season:'冬',
+      season:'',
       months:''
     },
   },
   onLoad(options) {
     if (options.season) {
-      console.log(options.season)
       this.setData({
-        'params.season': options.season
+        'type': options.season
       });
+      var time = new Date().getMonth()+1
+      if (options.season=='ts') {
+        wx.setNavigationBarTitle({
+          title: '特色民宿'
+        })
+        this.setData({
+          'params.months': time+''
+        });
+      } else{
+        // 四季民宿
+        if (time>1 && time<=5) {
+          this.setData({
+            'params.season': '春'
+          });
+        } else if (time>5 && time<=8) {
+          this.setData({
+            'params.season': '夏'
+          });
+        } else if (time>8 && time<=11) {
+          this.setData({
+            'params.season': '秋'
+          });
+        } else {
+          this.setData({
+            'params.season': '冬'
+          });
+        }
+      }
     }
     this.setData({
       'params.page': '0'
     });
+
+    
     this.getList()
   },
-  getList(){
+  getList(){ 
     if (this.data.params.page == 0) {
       this.setData({
         productList:[]
       })
     }
+    
     util.request("/gethotel", this.data.params, "POST", false, false).then((res) => {
       if (res && res.code === 200) {
         this.setData({
